@@ -20,11 +20,12 @@ class _AuthAppState extends State<AuthApp> {
   final passwordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Login page'),
-        ),
+            title: Text('(Logged ' + (user == null ? 'out' : 'in') + ')')),
         body: Center(
           child: Column(
             children: [
@@ -46,8 +47,20 @@ class _AuthAppState extends State<AuthApp> {
                                 password: passwordcontroller.text);
                         setState(() {});
                       }),
-                  ElevatedButton(child: Text('Sign In '), onPressed: () {}),
-                  ElevatedButton(child: Text('Log Out '), onPressed: () {}),
+                  ElevatedButton(
+                      child: Text('Sign In '),
+                      onPressed: () async {
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                            email: emailcontroller.text,
+                            password: passwordcontroller.text);
+                        setState(() {});
+                      }),
+                  ElevatedButton(
+                      child: Text('Log Out '),
+                      onPressed: () async {
+                        await FirebaseAuth.instance.signOut();
+                        setState(() {});
+                      }),
                 ],
               )
             ],
