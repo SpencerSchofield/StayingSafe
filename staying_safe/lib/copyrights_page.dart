@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 class CopyrightsPage extends StatelessWidget {
   final String copyrightsText;
 
-  const CopyrightsPage({Key? key, required this.copyrightsText}) : super(key: key);
+  const CopyrightsPage({Key? key, required this.copyrightsText})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("TomTom Maps API - Copyrights"),
+        title: const Text("TomTom Maps API - Copyrights"),
       ),
       body: Container(
         child: Column(
@@ -17,7 +18,8 @@ class CopyrightsPage extends StatelessWidget {
             Expanded(
                 child: SingleChildScrollView(
               child: Container(
-                  padding: EdgeInsets.all(20), child: Text(copyrightsText)),
+                  padding: const EdgeInsets.all(20),
+                  child: Text(copyrightsText)),
             )),
           ],
         ),
