@@ -3,14 +3,15 @@ import "package:http/http.dart" as http;
 import "dart:convert" as convert;
 import "package:flutter_map/flutter_map.dart";
 import "package:latlong2/latlong.dart";
-import "package:staying_safe/copyrights_page.dart";
+import 'package:staying_safe/screens/copyrights_page.dart';
 
 const String apiKey = "RZrPN8h5C4BWs2TaHhBm8akd925h2n0L";
 
 class MapWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final canterburyCoords = LatLng(51.27597, 1.07561);
+    final canterburyCoords =
+        LatLng(51.27597, 1.07561); //update this line to be current location
     return MaterialApp(
       title: "TomTom Map",
       home: Scaffold(
