@@ -17,6 +17,7 @@ class _AuthAppState extends State<AuthApp> {
 
     return MaterialApp(
         home: Scaffold(
+            backgroundColor: Colors.grey,
             appBar: AppBar(
                 title: Text('(Logged ' + (user == null ? 'out' : 'in') + ')')),
             body: Center(
@@ -44,29 +45,10 @@ class _AuthAppState extends State<AuthApp> {
                               height: 20,
                             ),
                             ElevatedButton(
-                                child: Text('Sign Up '),
-                                onPressed: () async {
-                                  try {
-                                    await FirebaseAuth.instance
-                                        .createUserWithEmailAndPassword(
-                                            email: emailcontroller.text,
-                                            password: passwordcontroller.text);
-                                    setState(() {});
-                                  } on FirebaseAuthException catch (e) {
-                                    if (e.code == 'weak-password') {
-                                      print(
-                                          'The password provided is too weak.');
-                                    } else if (e.code ==
-                                        'email-already-in-use') {
-                                      print(
-                                          'The account already exists for that email.');
-                                    }
-                                  } catch (e) {
-                                    print(e);
-                                  }
-                                }),
-                            ElevatedButton(
-                                child: Text('Sign In '),
+                                child: const Text('Sign In '),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.black,
+                                ),
                                 onPressed: () async {
                                   try {
                                     await FirebaseAuth.instance
@@ -76,15 +58,34 @@ class _AuthAppState extends State<AuthApp> {
                                     setState(() {});
                                   } on FirebaseAuthException catch (e) {
                                     if (e.code == 'user-not-found') {
-                                      print('No user found for that email.');
+                                      throw ('No user found for that email.');
                                     } else if (e.code == 'wrong-password') {
-                                      print(
-                                          'Wrong password provided for that user.');
+                                      throw ('Wrong password provided for that user.');
                                     }
                                   }
                                 }),
                             ElevatedButton(
-                                child: Text('Log Out '),
+                                child: const Text('Sign Up '),
+                                onPressed: () async {
+                                  try {
+                                    await FirebaseAuth.instance
+                                        .createUserWithEmailAndPassword(
+                                            email: emailcontroller.text,
+                                            password: passwordcontroller.text);
+                                    setState(() {});
+                                  } on FirebaseAuthException catch (e) {
+                                    if (e.code == 'weak-password') {
+                                      throw ('The password provided is too weak.');
+                                    } else if (e.code ==
+                                        'email-already-in-use') {
+                                      throw ('The account already exists for that email.');
+                                    }
+                                  } catch (e) {
+                                    rethrow;
+                                  }
+                                }),
+                            ElevatedButton(
+                                child: const Text('Log Out '),
                                 onPressed: () async {
                                   await FirebaseAuth.instance.signOut();
                                   setState(() {});
