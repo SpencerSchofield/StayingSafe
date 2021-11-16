@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import "./screens/auth_screen.dart";
-import "./screens/home_screen.dart";
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -10,7 +9,7 @@ void main() async {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeScreen(), //AuthApp(),
+      home: AuthApp(),
       theme: ThemeData(primaryColor: Colors.black),
     );
   }
