@@ -39,6 +39,8 @@ dependencies:
   flutter_map: ^0.14.0
   http: ^0.13.4
   latlong: any
+  firebase_core: ^1.8.0
+  firebase_auth: ^3.1.4
 
 dev_dependencies:
   flutter_test:
