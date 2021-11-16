@@ -42,8 +42,9 @@ class MapWidget extends StatelessWidget {
               ],
             ),
             Container(
-                padding: const EdgeInsets.all(20),
-                alignment: Alignment.bottomLeft,
+                width: 120.0,
+                padding: const EdgeInsets.all(10),
+                alignment: Alignment.topLeft,
                 child: Image.asset("images/tt_logo.png"))
           ],
         )),
