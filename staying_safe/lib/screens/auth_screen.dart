@@ -47,6 +47,7 @@ class _AuthAppState extends State<AuthApp> {
                               height: 20,
                             ),
                             ElevatedButton(
+                                //sign in button
                                 child: const Text('Sign In '),
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.black,
@@ -58,20 +59,20 @@ class _AuthAppState extends State<AuthApp> {
                                             email: emailcontroller.text,
                                             password: passwordcontroller.text);
                                     setState(() {});
-                                    isLoggedIn = true;
+                                    isLoggedIn == true;
                                   } on FirebaseAuthException catch (e) {
                                     if (e.code == 'user-not-found') {
                                       throw ('No user found for that email.');
                                     } else if (e.code == 'wrong-password') {
                                       throw ('Wrong password provided for that user.');
                                     }
-                                    if (isLoggedIn == true) {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => HomeScreen()),
-                                      );
-                                    }
+                                  }
+                                  if (user != null) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => HomeScreen()),
+                                    );
                                   }
                                 }),
                             ElevatedButton(
