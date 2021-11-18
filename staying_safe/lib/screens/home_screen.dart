@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import "package:flutter/material.dart";
+import 'package:staying_safe/screens/auth_screen.dart';
 import "package:staying_safe/services/map.dart";
 
 class HomeScreen extends StatelessWidget {
@@ -6,12 +9,23 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const IconButton(
-          icon: Icon(Icons.menu),
-          tooltip: 'Navigation menu',
-          onPressed: null,
-        ),
         title: const Text('Kent Walksafe'),
+        centerTitle: true,
+        actions: [
+          PopupMenuButton<int>(
+              icon: const Icon(Icons.menu),
+              onSelected: (item) => onSelected(context, item),
+              itemBuilder: (context) => [
+                    const PopupMenuItem<int>(
+                      value: 0,
+                      child: Text('Setting'),
+                    ),
+                    const PopupMenuItem<int>(
+                      value: 1,
+                      child: Text('Log Out'),
+                    ),
+                  ])
+        ],
       ),
       // body is the majority of the screen.
       body: MapWidget(),
@@ -32,5 +46,25 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void onSelected(BuildContext context, int item) {
+    switch (item) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AuthApp()),
+        );
+        break;
+      case 1:
+        () async {
+          await FirebaseAuth.instance.signOut();
+        };
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AuthApp()),
+        );
+        break;
+    }
   }
 }
