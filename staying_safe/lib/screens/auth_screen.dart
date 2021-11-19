@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:staying_safe/screens/home_screen.dart';
@@ -18,7 +16,7 @@ class _AuthAppState extends State<AuthApp> {
   Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
     bool isLoggedIn = false;
-    var error = new StringBuffer();
+    var error = StringBuffer();
 
     return MaterialApp(
         home: Scaffold(
@@ -92,7 +90,7 @@ class _AuthAppState extends State<AuthApp> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      HomeScreen()),
+                                                      const HomeScreen()),
                                             );
                                           }
                                         }),
@@ -104,6 +102,7 @@ class _AuthAppState extends State<AuthApp> {
                                         style: ElevatedButton.styleFrom(
                                             primary: Colors.black),
                                         onPressed: () async {
+                                          error.clear();
                                           try {
                                             await FirebaseAuth.instance
                                                 .createUserWithEmailAndPassword(
@@ -136,12 +135,33 @@ class _AuthAppState extends State<AuthApp> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      HomeScreen()),
+                                                      const HomeScreen()),
                                             );
                                           }
                                         }),
-                                  )
-                                ])
+                                  ),
+                                ]),
+                            Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Colors.black),
+                                  onPressed: () async {
+                                    if (emailcontroller.text == '') {
+                                      const snackBar = SnackBar(
+                                        content:
+                                            Text('please enter a valid email'),
+                                      );
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
+                                    } else {
+                                      await FirebaseAuth.instance
+                                          .sendPasswordResetEmail(
+                                              email: emailcontroller.text);
+                                    }
+                                  },
+                                  child: const Text('Forgot password?')),
+                            )
                           ]);
                     })))));
   }
