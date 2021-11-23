@@ -1,17 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:staying_safe/screens/settings_screen.dart';
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:staying_safe/screens/auth_screen.dart';
-import "package:staying_safe/services/map.dart";
+import 'package:staying_safe/screens/home_screen.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class setting extends StatefulWidget {
+  const setting({Key? key}) : super(key: key);
 
+  @override
+  _settingState createState() => _settingState();
+}
+
+class _settingState extends State<setting> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Kent Walksafe'),
+        title: const Text('Setting'),
         automaticallyImplyLeading: false, //remove backbutton
         centerTitle: true,
         actions: [
@@ -21,31 +25,13 @@ class HomeScreen extends StatelessWidget {
               itemBuilder: (context) => [
                     const PopupMenuItem<int>(
                       value: 0,
-                      child: Text('Setting'),
+                      child: Text('Main Menu'),
                     ),
                     const PopupMenuItem<int>(
                       value: 1,
                       child: Text('Log Out'),
                     ),
                   ])
-        ],
-      ),
-      // body is the majority of the screen.
-      body: MapWidget(),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map_outlined),
-            label: 'Map',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.medical_services_outlined),
-            label: 'SOS',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outlined),
-            label: 'Trusted Contacts',
-          ),
         ],
       ),
     );
@@ -56,7 +42,7 @@ class HomeScreen extends StatelessWidget {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const setting()),
+          MaterialPageRoute(builder: (context) => HomeScreen()),
         );
         break;
       case 1:
