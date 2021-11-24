@@ -16,7 +16,7 @@ class _settingState extends State<setting> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Setting'),
+        title: const Text('Settings'),
         automaticallyImplyLeading: false, //remove backbutton
         centerTitle: true,
         actions: [
@@ -43,7 +43,7 @@ class _settingState extends State<setting> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const Mapscreen()),
+          MaterialPageRoute(builder: (context) => const Homescreen()),
         );
         break;
       case 1:

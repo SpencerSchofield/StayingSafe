@@ -3,6 +3,7 @@ import 'package:staying_safe/screens/Map_screen.dart';
 import 'package:staying_safe/screens/settings_screen.dart';
 import "package:flutter/material.dart";
 import 'package:staying_safe/screens/auth_screen.dart';
+import 'package:staying_safe/screens/sos_screen.dart';
 import "package:staying_safe/services/map.dart";
 
 class Homescreen extends StatefulWidget {
@@ -14,21 +15,12 @@ class Homescreen extends StatefulWidget {
 
 class _HomescreenState extends State<Homescreen> {
   var _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
   static const List<Widget> _widgetOptions = <Widget>[
     Mapscreen(),
+    SOSscreen(),
     Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 3: Settings',
-      style: optionStyle,
+      'Trusted contacts',
     ),
   ];
 
@@ -61,26 +53,6 @@ class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Kent Walksafe'),
-        automaticallyImplyLeading: false, //remove backbutton
-        centerTitle: true,
-        actions: [
-          PopupMenuButton<int>(
-              icon: const Icon(Icons.menu),
-              onSelected: (item) => onSelected(context, item),
-              itemBuilder: (context) => [
-                    const PopupMenuItem<int>(
-                      value: 0,
-                      child: Text('Setting'),
-                    ),
-                    const PopupMenuItem<int>(
-                      value: 1,
-                      child: Text('Log Out'),
-                    ),
-                  ])
-        ],
-      ),
       // body is the majority of the screen.
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -90,22 +62,14 @@ class _HomescreenState extends State<Homescreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
-            backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
-            backgroundColor: Colors.green,
+            icon: Icon(Icons.medical_services_outlined),
+            label: 'SOS',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
-            label: 'School',
-            backgroundColor: Colors.purple,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-            backgroundColor: Colors.pink,
+            label: 'Trusted contacts',
           ),
         ],
         currentIndex: _selectedIndex,

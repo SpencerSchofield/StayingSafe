@@ -26,7 +26,7 @@ class _MapscreenState extends State<Mapscreen> {
               itemBuilder: (context) => [
                     const PopupMenuItem<int>(
                       value: 0,
-                      child: Text('Setting'),
+                      child: Text('Settings'),
                     ),
                     const PopupMenuItem<int>(
                       value: 1,
