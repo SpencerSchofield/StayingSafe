@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:staying_safe/screens/Map_screen.dart';
 import 'package:staying_safe/screens/home_screen.dart';
 
 class AuthApp extends StatefulWidget {
@@ -101,7 +102,7 @@ class _AuthAppState extends State<AuthApp> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      const HomeScreen()),
+                                                      const Homescreen()),
                                             );
                                           }
                                         }),
@@ -147,7 +148,7 @@ class _AuthAppState extends State<AuthApp> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      const HomeScreen()),
+                                                      const Homescreen()),
                                             );
                                           }
                                         }),
