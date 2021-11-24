@@ -12,10 +12,13 @@ class AuthApp extends StatefulWidget {
 class _AuthAppState extends State<AuthApp> {
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
+  bool ispassword = true;
+  bool isLoggedIn = false;
+  User? user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
-    bool isLoggedIn = false;
+    //bool isHiddenPassword = true;
     var error = StringBuffer();
 
     return MaterialApp(
@@ -30,18 +33,26 @@ class _AuthAppState extends State<AuthApp> {
                       return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            (Image.asset("images/Logo.png")),
                             TextFormField(
-                              key: const ValueKey("username"),
-                              textAlign: TextAlign.center,
-                              decoration:
-                                  const InputDecoration(hintText: "Username"),
+                              key: const ValueKey("Email"),
+                              textAlign: TextAlign.left,
+                              decoration: const InputDecoration(
+                                hintText: "Email",
+                                prefixIcon: Icon(Icons.email),
+                              ),
                               controller: emailcontroller,
                             ),
-                            TextFormField(
+                            TextField(
                               key: const ValueKey("password"),
-                              textAlign: TextAlign.center,
-                              decoration:
-                                  const InputDecoration(hintText: "Password"),
+                              textAlign: TextAlign.left,
+                              obscureText: ispassword,
+                              decoration: InputDecoration(
+                                  hintText: "Password",
+                                  prefixIcon: const Icon(Icons.security),
+                                  suffixIcon: InkWell(
+                                      onTap: _togglePasswordView,
+                                      child: const Icon(Icons.visibility))),
                               controller: passwordcontroller,
                             ),
                             const SizedBox(
@@ -51,13 +62,13 @@ class _AuthAppState extends State<AuthApp> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(16.0),
+                                    padding: const EdgeInsets.all(12.0),
                                     child: ElevatedButton(
                                         //sign in button
                                         child: const Text('Sign In '),
                                         style: ElevatedButton.styleFrom(
-                                          primary: Colors.black,
-                                        ),
+                                            primary: Colors.black,
+                                            fixedSize: const Size(130, 50)),
                                         onPressed: () async {
                                           error.clear();
                                           try {
@@ -96,11 +107,12 @@ class _AuthAppState extends State<AuthApp> {
                                         }),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(16.0),
+                                    padding: const EdgeInsets.all(12.0),
                                     child: ElevatedButton(
                                         child: const Text('Sign Up '),
                                         style: ElevatedButton.styleFrom(
-                                            primary: Colors.black),
+                                            primary: Colors.black,
+                                            fixedSize: const Size(130, 50)),
                                         onPressed: () async {
                                           error.clear();
                                           try {
@@ -145,7 +157,8 @@ class _AuthAppState extends State<AuthApp> {
                               padding: const EdgeInsets.all(12.0),
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                      primary: Colors.black),
+                                      primary: Colors.black,
+                                      fixedSize: const Size(200, 50)),
                                   onPressed: () async {
                                     if (emailcontroller.text == '') {
                                       const snackBar = SnackBar(
@@ -164,5 +177,14 @@ class _AuthAppState extends State<AuthApp> {
                             )
                           ]);
                     })))));
+  }
+
+  void _togglePasswordView() {
+    if (ispassword == true) {
+      ispassword = false;
+    } else {
+      ispassword = true;
+    }
+    setState(() {});
   }
 }

@@ -8,6 +8,8 @@ import 'package:staying_safe/screens/copyrights_page.dart';
 final String apiKey = "RZrPN8h5C4BWs2TaHhBm8akd925h2n0L";
 
 class MapWidget extends StatelessWidget {
+  const MapWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final canterburyCoords =

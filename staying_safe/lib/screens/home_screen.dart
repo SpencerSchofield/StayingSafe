@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       // body is the majority of the screen.
-      body: MapWidget(),
+      body: const MapWidget(),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
