@@ -5,7 +5,7 @@ import "package:flutter_map/flutter_map.dart";
 import "package:latlong2/latlong.dart";
 import 'package:staying_safe/screens/copyrights_page.dart';
 
-const String apiKey = "RZrPN8h5C4BWs2TaHhBm8akd925h2n0L";
+final String apiKey = "RZrPN8h5C4BWs2TaHhBm8akd925h2n0L";
 
 class MapWidget extends StatelessWidget {
   const MapWidget({Key? key}) : super(key: key);
@@ -66,8 +66,10 @@ class MapWidget extends StatelessWidget {
   }
 }
 
+/* GET method for copyrights page 
+** @Return JSON response */
 Future<http.Response> getCopyrightsJSONResponse() async {
-  Uri url = "https://api.tomtom.com/map/1/copyrights.json?key=$apiKey" as Uri;
+  var url = Uri.parse("https://api.tomtom.com/map/1/copyrights.json?key=$apiKey");
   var response = await http.get(url);
   return response;
 }
