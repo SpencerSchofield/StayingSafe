@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1075454196704",
+    "project_id": "stayingsafe-d218e",
+    "storage_bucket": "stayingsafe-d218e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075454196704:android:3750c60bc1042dd1764985",
+        "android_client_info": {
+          "package_name": "com.stayingsafe.stayingSafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1075454196704-rs3ivg0ga6i23rck84q434e8dq7ea4i3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB07XJX4aU09lDu_tNNzi2uE7LpxwIOx28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1075454196704-rs3ivg0ga6i23rck84q434e8dq7ea4i3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1075454196704-larj6h3fni96b0018kt8p2jbn5fr2t91.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.stayingsafe.stayingSafe"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
