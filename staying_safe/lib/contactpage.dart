@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
-
 import 'contactlist.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class ContactPage extends StatefulWidget {
   @override
@@ -12,6 +13,7 @@ class ContactPage extends StatefulWidget {
 class _ContactPageState extends State<ContactPage> {
   List<Contact>? _contacts;
   bool _permissionDenied = false;
+  final database = FirebaseDatabase.instance.ref();
 
   @override
   void initState() {
@@ -37,11 +39,13 @@ class _ContactPageState extends State<ContactPage> {
   Widget _body() {
     if (_permissionDenied) return Center(child: Text('Permission denied'));
     if (_contacts == null) return Center(child: CircularProgressIndicator());
+    final contactsDB = database.child("contacts/");
     return ListView.builder(
         itemCount: _contacts!.length,
         itemBuilder: (context, i) => ListTile(
             title: Text(_contacts![i].displayName),
             onTap: () async {
+              contactsDB.set("Hello").then((_)=>print("database updated")).catchError((error)=>print("Error occurred + $error"));
               final fullContact =
               await FlutterContacts.getContact(_contacts![i].id);
               await Navigator.of(context).push(
