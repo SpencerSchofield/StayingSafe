@@ -45,7 +45,7 @@ class _ContactPageState extends State<ContactPage> {
         itemBuilder: (context, i) => ListTile(
             title: Text(_contacts![i].displayName),
             onTap: () async {
-              contactsDB.set("Hello").then((_)=>print("database updated")).catchError((error)=>print("Error occurred + $error"));
+              contactsDB.set("Test1").then((_)=>print("database updated")).catchError((error)=>print("Error occurred + $error"));
               final fullContact =
               await FlutterContacts.getContact(_contacts![i].id);
               await Navigator.of(context).push(
