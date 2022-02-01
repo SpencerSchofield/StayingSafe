@@ -13,7 +13,6 @@ class ContactPage extends StatefulWidget {
 class _ContactPageState extends State<ContactPage> {
   List<Contact>? _contacts;
   bool _permissionDenied = false;
-  final database = FirebaseDatabase.instance.ref();
 
   @override
   void initState() {
@@ -33,21 +32,18 @@ class _ContactPageState extends State<ContactPage> {
   @override
   Widget build(BuildContext context) => MaterialApp(
       home: Scaffold(
-          appBar: AppBar(title: Text('Contacts List')),
-          body: _body()));
+          appBar: AppBar(title: Text('Contacts List')), body: _body()));
 
   Widget _body() {
     if (_permissionDenied) return Center(child: Text('Permission denied'));
     if (_contacts == null) return Center(child: CircularProgressIndicator());
-    final contactsDB = database.child("contacts/");
     return ListView.builder(
         itemCount: _contacts!.length,
         itemBuilder: (context, i) => ListTile(
             title: Text(_contacts![i].displayName),
             onTap: () async {
-              contactsDB.set("Test1").then((_)=>print("database updated")).catchError((error)=>print("Error occurred + $error"));
               final fullContact =
-              await FlutterContacts.getContact(_contacts![i].id);
+                  await FlutterContacts.getContact(_contacts![i].id);
               await Navigator.of(context).push(
                   MaterialPageRoute(builder: (_) => ContactList(fullContact!)));
             }));

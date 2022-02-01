@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 
 class ContactList extends StatelessWidget {
   final Contact contact;
-  final database = FirebaseDatabase.instance.ref();
+  final database = FirebaseDatabase.instance.ref("users/");
+  final database1 = FirebaseDatabase.instance.ref("users/p_key");
   ContactList(this.contact);
 
   @override
@@ -22,9 +24,12 @@ class ContactList extends StatelessWidget {
         ElevatedButton(
           onPressed: () async {
             database
-                .set("Hello")
-                .then((_) => print("database updated"))
+                .update({
+                  "p_key": contact.id,
+                })
+                .then((_) => print("database1 updated"))
                 .catchError((error) => print("Error occurred + $error"));
+            database1.update({"name": contact.displayName});
           },
           child: const Text("database"),
         )
