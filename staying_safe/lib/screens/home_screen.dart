@@ -1,54 +1,33 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:staying_safe/contactpage.dart';
+import 'package:staying_safe/screens/Map_screen.dart';
 import 'package:staying_safe/screens/settings_screen.dart';
 import "package:flutter/material.dart";
 import 'package:staying_safe/screens/auth_screen.dart';
+import 'package:staying_safe/screens/sos_screen.dart';
 import "package:staying_safe/services/map.dart";
+import 'package:staying_safe/contactpage.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class Homescreen extends StatefulWidget {
+  const Homescreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Kent Walksafe'),
-        automaticallyImplyLeading: false, //remove backbutton
-        centerTitle: true,
-        actions: [
-          PopupMenuButton<int>(
-              icon: const Icon(Icons.menu),
-              onSelected: (item) => onSelected(context, item),
-              itemBuilder: (context) => [
-                    const PopupMenuItem<int>(
-                      value: 0,
-                      child: Text('Setting'),
-                    ),
-                    const PopupMenuItem<int>(
-                      value: 1,
-                      child: Text('Log Out'),
-                    ),
-                  ])
-        ],
-      ),
-      // body is the majority of the screen.
-      body: MapWidget(),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map_outlined),
-            label: 'Map',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.medical_services_outlined),
-            label: 'SOS',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outlined),
-            label: 'Trusted Contacts',
-          ),
-        ],
-      ),
-    );
+  _HomescreenState createState() => _HomescreenState();
+}
+
+class _HomescreenState extends State<Homescreen> {
+  var _selectedIndex = 0;
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    Mapscreen(),
+    SOSscreen(),
+    ContactPage(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   void onSelected(BuildContext context, int item) {
@@ -69,5 +48,34 @@ class HomeScreen extends StatelessWidget {
         );
         break;
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // body is the majority of the screen.
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.medical_services_outlined),
+            label: 'SOS',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Trusted contacts',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
+      ),
+    );
   }
 }

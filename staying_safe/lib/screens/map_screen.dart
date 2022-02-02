@@ -1,22 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:staying_safe/screens/Map_screen.dart';
+import 'package:staying_safe/screens/settings_screen.dart';
+import "package:flutter/material.dart";
 import 'package:staying_safe/screens/auth_screen.dart';
-import 'package:staying_safe/screens/home_screen.dart';
+import "package:staying_safe/services/map.dart";
 
-class setting extends StatefulWidget {
-  const setting({Key? key}) : super(key: key);
+class Mapscreen extends StatefulWidget {
+  const Mapscreen({Key? key}) : super(key: key);
 
   @override
-  _settingState createState() => _settingState();
+  _MapscreenState createState() => _MapscreenState();
 }
 
-class _settingState extends State<setting> {
+class _MapscreenState extends State<Mapscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: const Text('Kent Walksafe'),
         automaticallyImplyLeading: false, //remove backbutton
         centerTitle: true,
         actions: [
@@ -26,7 +26,7 @@ class _settingState extends State<setting> {
               itemBuilder: (context) => [
                     const PopupMenuItem<int>(
                       value: 0,
-                      child: Text('Main Menu'),
+                      child: Text('Settings'),
                     ),
                     const PopupMenuItem<int>(
                       value: 1,
@@ -35,6 +35,8 @@ class _settingState extends State<setting> {
                   ])
         ],
       ),
+      // body is the majority of the screen.
+      body: const MapWidget(),
     );
   }
 
@@ -43,7 +45,7 @@ class _settingState extends State<setting> {
       case 0:
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const Homescreen()),
+          MaterialPageRoute(builder: (context) => const setting()),
         );
         break;
       case 1:
