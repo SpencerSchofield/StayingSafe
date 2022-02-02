@@ -6,6 +6,5 @@ import 'contactpage.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
- //runApp(const AuthApp());
-  runApp(ContactPage());
+  runApp(const AuthApp());
 }
