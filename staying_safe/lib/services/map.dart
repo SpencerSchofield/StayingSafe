@@ -69,7 +69,8 @@ class MapWidget extends StatelessWidget {
 /* GET method for copyrights page 
 ** @Return JSON response */
 Future<http.Response> getCopyrightsJSONResponse() async {
-  var url = Uri.parse("https://api.tomtom.com/map/1/copyrights.json?key=$apiKey");
+  var url =
+      Uri.parse("https://api.tomtom.com/map/1/copyrights.json?key=$apiKey");
   var response = await http.get(url);
   return response;
 }

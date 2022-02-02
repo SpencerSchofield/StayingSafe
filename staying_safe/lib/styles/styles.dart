@@ -1,18 +1,11 @@
-// ignore_for_file: unnecessary_new
-
 import 'package:flutter/material.dart';
-//import 'package:staying_safe/styles/util.dart';
 
 class Styles {
   static final ButtonStyle loginStyle = ElevatedButton.styleFrom(
       primary: Colors.black,
       minimumSize: const Size(100, 50),
-      // //shape: new RoundedRectangleBorder(
-      //   borderRadius: new BorderRadius.circular(30.0),
-      // ),
-      textStyle: const TextStyle(
-          color: Colors.black, //fontSize: 20,
-          fontStyle: FontStyle.italic));
+      textStyle:
+          const TextStyle(color: Colors.black, fontStyle: FontStyle.italic));
 
   static final ButtonStyle sosStyle = ElevatedButton.styleFrom(
       minimumSize: const Size(100, 75),
