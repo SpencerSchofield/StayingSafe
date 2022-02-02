@@ -6,6 +6,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class ContactPage extends StatefulWidget {
+  const ContactPage({Key? key}) : super(key: key);
+
   @override
   _ContactPageState createState() => _ContactPageState();
 }

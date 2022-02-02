@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:staying_safe/screens/home_screen.dart';
+import 'package:staying_safe/styles/styles.dart';
 
 final emailcontroller = TextEditingController();
 final passwordcontroller = TextEditingController();
@@ -41,7 +42,6 @@ class _HomeState extends State<Home> {
     return Scaffold(
         backgroundColor: Colors.grey,
         appBar: appbar,
-        //(Logged ' + (user == null ? 'out' : 'in') + ')'
         body: Padding(
             padding: const EdgeInsets.all(60.0),
             child: SizedBox(
@@ -82,11 +82,9 @@ class _HomeState extends State<Home> {
                               Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: ElevatedButton(
+                                    style: Styles.loginStyle,
                                     //sign in button
                                     child: const Text('Sign In '),
-                                    style: ElevatedButton.styleFrom(
-                                      primary: Colors.black,
-                                    ),
                                     onPressed: () async {
                                       error.clear();
                                       try {
@@ -111,15 +109,16 @@ class _HomeState extends State<Home> {
                                       final snackBar = SnackBar(
                                         content: Text(error.toString()),
                                       );
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(snackBar);
                                       if (isLoggedIn == true) {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const HomeScreen()),
+                                                  const Homescreen()),
                                         );
+                                      } else if (isLoggedIn == false) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(snackBar);
                                       }
                                     }),
                               ),
@@ -127,9 +126,7 @@ class _HomeState extends State<Home> {
                                 padding: const EdgeInsets.all(12.0),
                                 child: ElevatedButton(
                                     child: const Text('Sign Up '),
-                                    style: ElevatedButton.styleFrom(
-                                      primary: Colors.black,
-                                    ),
+                                    style: Styles.loginStyle,
                                     onPressed: () async {
                                       error.clear();
                                       try {
@@ -156,15 +153,16 @@ class _HomeState extends State<Home> {
                                       final snackBar = SnackBar(
                                         content: Text(error.toString()),
                                       );
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(snackBar);
                                       if (isLoggedIn == true) {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const HomeScreen()),
+                                                  const Homescreen()),
                                         );
+                                      } else if (isLoggedIn == false) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(snackBar);
                                       }
                                     }),
                               ),
