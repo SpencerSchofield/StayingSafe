@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:staying_safe/contactpage.dart';
 import 'package:staying_safe/screens/Map_screen.dart';
 import 'package:staying_safe/screens/settings_screen.dart';
 import "package:flutter/material.dart";
 import 'package:staying_safe/screens/auth_screen.dart';
 import 'package:staying_safe/screens/sos_screen.dart';
 import "package:staying_safe/services/map.dart";
+import 'package:staying_safe/contactpage.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({Key? key}) : super(key: key);
@@ -19,9 +21,7 @@ class _HomescreenState extends State<Homescreen> {
   static const List<Widget> _widgetOptions = <Widget>[
     Mapscreen(),
     SOSscreen(),
-    Text(
-      'Trusted contacts',
-    ),
+    ContactPage(),
   ];
 
   void _onItemTapped(int index) {
