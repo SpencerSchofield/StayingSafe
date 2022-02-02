@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:staying_safe/screens/settings_screen.dart';
 import 'auth_screen.dart';
 import 'package:staying_safe/styles/styles.dart';
-import 'package:staying_safe/services/icon.dart';
 
 class SOSscreen extends StatefulWidget {
   const SOSscreen({Key? key}) : super(key: key);
@@ -82,8 +81,9 @@ class _SOSscreenState extends State<SOSscreen> {
             children: [
               ElevatedButton.icon(
                 icon: const Icon(
-                  MyFlutterApp.exclamation,
+                  Icons.contacts,
                   color: Colors.black,
+                  size: 30.0,
                 ),
                 label: const Text('EMERGENCY'),
                 onPressed: () {},

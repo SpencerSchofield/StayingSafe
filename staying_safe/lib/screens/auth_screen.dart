@@ -42,7 +42,6 @@ class _HomeState extends State<Home> {
     return Scaffold(
         backgroundColor: Colors.grey,
         appBar: appbar,
-        //Logged ' + (user == null ? 'out' : 'in') + ')'
         body: Padding(
             padding: const EdgeInsets.all(60.0),
             child: SizedBox(
