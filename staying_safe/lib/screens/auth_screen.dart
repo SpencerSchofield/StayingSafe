@@ -11,6 +11,14 @@ User? user = FirebaseAuth.instance.currentUser;
 final appbar = AppBar(title: const Text('Staying safe'));
 var error = StringBuffer();
 
+final emailcontroller = TextEditingController();
+final passwordcontroller = TextEditingController();
+bool ispassword = true;
+bool isLoggedIn = false;
+User? user = FirebaseAuth.instance.currentUser;
+final appbar = AppBar(title: const Text('Staying safe'));
+var error = StringBuffer();
+
 class AuthApp extends StatefulWidget {
   const AuthApp({Key? key}) : super(key: key);
 
@@ -27,7 +35,15 @@ class _AuthAppState extends State<AuthApp> {
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+<<<<<<< HEAD
 
+  @override
+  _HomeState createState() => _HomeState();
+}
+=======
+>>>>>>> feature/develop
+
+class _HomeState extends State<Home> {
   @override
   _HomeState createState() => _HomeState();
 }
@@ -42,7 +58,11 @@ class _HomeState extends State<Home> {
     return Scaffold(
         backgroundColor: Colors.grey,
         appBar: appbar,
+<<<<<<< HEAD
         //Logged ' + (user == null ? 'out' : 'in') + ')'
+=======
+        //(Logged ' + (user == null ? 'out' : 'in') + ')'
+>>>>>>> feature/develop
         body: Padding(
             padding: const EdgeInsets.all(60.0),
             child: SizedBox(
@@ -83,9 +103,17 @@ class _HomeState extends State<Home> {
                               Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: ElevatedButton(
+<<<<<<< HEAD
                                     style: Styles.loginStyle,
                                     //sign in button
                                     child: const Text('Sign In '),
+=======
+                                    //sign in button
+                                    child: const Text('Sign In '),
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.black,
+                                    ),
+>>>>>>> feature/develop
                                     onPressed: () async {
                                       error.clear();
                                       try {
@@ -110,17 +138,21 @@ class _HomeState extends State<Home> {
                                       final snackBar = SnackBar(
                                         content: Text(error.toString()),
                                       );
-
                                       if (isLoggedIn == true) {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
+<<<<<<< HEAD
                                                   const Homescreen()),
                                         );
                                       } else if (isLoggedIn == false) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(snackBar);
+=======
+                                                  const HomeScreen()),
+                                        );
+>>>>>>> feature/develop
                                       }
                                     }),
                               ),
@@ -128,7 +160,13 @@ class _HomeState extends State<Home> {
                                 padding: const EdgeInsets.all(12.0),
                                 child: ElevatedButton(
                                     child: const Text('Sign Up '),
+<<<<<<< HEAD
                                     style: Styles.loginStyle,
+=======
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.black,
+                                    ),
+>>>>>>> feature/develop
                                     onPressed: () async {
                                       error.clear();
                                       try {
@@ -155,17 +193,27 @@ class _HomeState extends State<Home> {
                                       final snackBar = SnackBar(
                                         content: Text(error.toString()),
                                       );
+<<<<<<< HEAD
 
+=======
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
+>>>>>>> feature/develop
                                       if (isLoggedIn == true) {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
+<<<<<<< HEAD
                                                   const Homescreen()),
                                         );
                                       } else if (isLoggedIn == false) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(snackBar);
+=======
+                                                  const HomeScreen()),
+                                        );
+>>>>>>> feature/develop
                                       }
                                     }),
                               ),
@@ -173,7 +221,13 @@ class _HomeState extends State<Home> {
                         Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: ElevatedButton(
+<<<<<<< HEAD
                               style: Styles.loginStyle,
+=======
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.black,
+                                  fixedSize: const Size(200, 50)),
+>>>>>>> feature/develop
                               onPressed: () async {
                                 if (emailcontroller.text == '') {
                                   const snackBar = SnackBar(
@@ -187,7 +241,11 @@ class _HomeState extends State<Home> {
                                           email: emailcontroller.text);
                                 }
                               },
+<<<<<<< HEAD
                               child: const Text('Forgot password')),
+=======
+                              child: const Text('Forgot password?')),
+>>>>>>> feature/develop
                         )
                       ]);
                 }))));
